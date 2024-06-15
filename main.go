@@ -67,12 +67,7 @@ func extractTags(list []string) []string {
 	for _, item := range list {
 		tags = append(tags, strings.Split(item, " ")...)
 	}
-	for _, tag := range tags {
-		if tag == "" {
-
-		}
-	}
-	return tags
+	return tags[1:]
 }
 
 func countTags(list []string) map[string]int {
@@ -129,14 +124,11 @@ func clusterFiles(files []fs.DirEntry, tagsMap map[string]int, path string) {
 func main() {
 	directory := path("/home/gustavosmc/Downloads")
 	files := fileNamesList(directory)
-	fmt.Println(files)
 	list := extractStrings(files)
-	fmt.Println(list)
 	list_2 := removeDelimeters(list)
-	fmt.Println(list_2)
 	list_3 := extractTags(list_2)
+	fmt.Println(list_3)
 	tagMap := countTags(list_3)
-	fmt.Println(tagMap)
 	clusterFiles(files, tagMap, "/home/gustavosmc/Downloads")
 }
 
